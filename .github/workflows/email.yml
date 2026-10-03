@@ -1,0 +1,20 @@
+name: Trigger Email Step
+
+on:
+  workflow_dispatch:
+    inputs:
+      emails:
+        description: 'Emails to echo in step names'
+        required: true
+        default: 'test@example.com'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ${{ github.event.inputs.emails }}
+        run: |
+          echo "Verified student email: ${{ github.event.inputs.emails }}"
